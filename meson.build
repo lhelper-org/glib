@@ -2168,8 +2168,13 @@ if libintl.found() and libintl.type_name() != 'internal'
   have_bind_textdomain_codeset = cc.has_function('bind_textdomain_codeset', dependencies: libintl_deps, prefix: libintl_prefix)
 else
   # using proxy-libintl fallback
-  libintl = dependency('intl', allow_fallback: true)
-  assert(libintl.type_name() == 'internal')
+  libintl_proxy = dependency('proxy-libintl', required: false)
+  if not libintl_proxy.found()
+    libintl = dependency('intl', allow_fallback: true)
+    assert(libintl.type_name() == 'internal')
+  else
+    libintl = libintl_proxy
+  endif
   libintl_deps = [libintl]
   have_bind_textdomain_codeset = true  # proxy-libintl supports it
 endif
