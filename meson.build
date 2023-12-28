@@ -284,6 +284,7 @@ if glib_build_shared and glib_build_static and (
   error('On Windows default_library must be "shared" or "static" but not "both"')
 endif
 
+glib_visibility_cflags = []
 if glib_build_static_only
   glibconfig_conf.set('GLIB_STATIC_COMPILATION', '1')
   glibconfig_conf.set('GOBJECT_STATIC_COMPILATION', '1')
@@ -291,6 +292,13 @@ if glib_build_static_only
   glibconfig_conf.set('GMODULE_STATIC_COMPILATION', '1')
   glibconfig_conf.set('G_INTL_STATIC_COMPILATION', '1')
   glibconfig_conf.set('FFI_STATIC_BUILD', '1')
+
+  glib_visibility_cflags += [
+    '-DGIO_STATIC_COMPILATION',
+    '-DGLIB_STATIC_COMPILATION',
+    '-DGMODULE_STATIC_COMPILATION',
+    '-DGOBJECT_STATIC_COMPILATION',
+  ]
 endif
 
 # Cygwin glib port maintainers made it clear

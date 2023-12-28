@@ -893,6 +893,7 @@ pkg.generate(libgio,
     'gresource=' + '${bindir}' / 'gresource',
     'gsettings=' + '${bindir}' / 'gsettings',
   ],
+  extra_cflags : glib_visibility_cflags,
   version : glib_version,
   install_dir : glib_pkgconfigreldir,
   filebase : 'gio-2.0',
@@ -909,6 +910,7 @@ if host_system == 'windows'
     filebase : 'gio-windows-2.0',
     name : 'GIO Windows specific APIs',
     description : 'Windows specific headers for glib I/O library',
+    extra_cflags : glib_visibility_cflags,
   )
   meson.override_dependency('gio-windows-2.0', libgio_dep)
 else
@@ -919,6 +921,7 @@ else
     filebase : 'gio-unix-2.0',
     name : 'GIO unix specific APIs',
     description : 'unix specific headers for glib I/O library',
+    extra_cflags : glib_visibility_cflags,
   )
   meson.override_dependency('gio-unix-2.0', libgio_dep)
 endif

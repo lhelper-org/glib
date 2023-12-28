@@ -161,6 +161,7 @@ pkg.generate(libgobject,
   filebase : 'gobject-2.0',
   name : 'GObject',
   description : 'GLib Type, Object, Parameter and Signal Library',
+  extra_cflags : glib_visibility_cflags,
 )
 
 libgobject_dep = declare_dependency(link_with : libgobject,

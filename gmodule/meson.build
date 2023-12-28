@@ -113,6 +113,7 @@ pkg.generate(libgmodule,
   filebase : 'gmodule-no-export-2.0',
   name : 'GModule',
   description : 'Dynamic module loader for GLib',
+  extra_cflags : glib_visibility_cflags,
 )
 
 pkg.generate(libraries : [libgmodule, export_dynamic_ldflags],
@@ -123,6 +124,7 @@ pkg.generate(libraries : [libgmodule, export_dynamic_ldflags],
   filebase : 'gmodule-export-2.0',
   name : 'GModule',
   description : 'Dynamic module loader for GLib',
+  extra_cflags : glib_visibility_cflags,
 )
 
 pkg.generate(libraries : [libgmodule, export_dynamic_ldflags],
@@ -133,6 +135,7 @@ pkg.generate(libraries : [libgmodule, export_dynamic_ldflags],
   filebase : 'gmodule-2.0',
   name : 'GModule',
   description : 'Dynamic module loader for GLib',
+  extra_cflags : glib_visibility_cflags,
 )
 
 gmodule_inc_dep = declare_dependency(
