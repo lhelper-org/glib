@@ -244,7 +244,10 @@ glib_conf.set_quoted('PACKAGE_STRING', 'glib @0@'.format(meson.project_version()
 glib_conf.set_quoted('PACKAGE_TARNAME', 'glib')
 glib_conf.set_quoted('PACKAGE_URL', '')
 glib_conf.set_quoted('PACKAGE_VERSION', meson.project_version())
-glib_conf.set('ENABLE_NLS', 1)
+
+if get_option('nls')
+  glib_conf.set('ENABLE_NLS', 1)
+endif
 
 # used by the .rc.in files
 glibconfig_conf.set('LT_CURRENT_MINUS_AGE', soversion)
