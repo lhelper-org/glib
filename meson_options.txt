@@ -93,6 +93,11 @@ option('nls',
        yield: true,
        description : 'Enable native language support (translations)')
 
+option('intl',
+       type : 'feature',
+       value : 'enabled',
+       description : 'Enable use of GNU gettext intl library')
+
 option('oss_fuzz',
        type : 'feature',
        value : 'disabled',

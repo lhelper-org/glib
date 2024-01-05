@@ -2143,8 +2143,12 @@ libz_dep = dependency('zlib')
 # FIXME: glib-gettext.m4 has much more checks to detect broken/uncompatible
 # implementations. This could be extended if issues are found in some platforms.
 libintl_deps = []
-libintl_prefix = '#include <libintl.h>'
-libintl = dependency('intl', required: false)
+if get_option('intl').enabled()
+  libintl_prefix = '#include <libintl.h>'
+  libintl = dependency('intl', required: false)
+else
+  libintl = disabler()
+endif
 if libintl.found() and libintl.type_name() != 'internal'
   # libintl supports different threading APIs, which may not
   # require additional flags, but it defaults to using pthreads if
